@@ -1,66 +1,64 @@
 /*
- * Name: ???
- * Student number: ???
+ * Name: Niall Curtis
+ * Student number: C1623580
  */
 
-/*
- * A class to represent a number of instances of a zoo animal.
- */
 public class Animal {
-    // Define fields here
-	// to be completed
 
-	/*
-	 * Constructor method for creating an animal with a given name
-	 * and number of  animal instances.
-	 * This constructor checks that the total number of instances argument is 
-	 * valid; i.e., the number of animals should be 1 or more. 
-	 * If not valid, the constructor will throw an IllegalArgumentException with
-	 * an appropriate error message.
-	 */
+	// Private Fields
+    private String animalName;
+
+    // We don't need a field for available animals, as we have a method to calculate it using these two.
+    private int totalAnimals;
+    private int loanedAnimals;
+	 	
 	public Animal( String inName, int inTotalNumAnimals ) {
-		// to be completed
+
+		// If less than 1 animal is entered, throw an exception, can't have 0 animals.
+		if (inTotalNumAnimals < 1) {
+			throw new IllegalArgumentException("Invalid Number of Animals Entered.");
+		}
+
+		this.animalName = inName;
+		this.totalAnimals = inTotalNumAnimals;
+		this.loanedAnimals = 0;
 	}
 
-	/*
-	 * An accessor method that returns the animals name.
-	 */
 	public String getName() {
-		// to be completed
+		return animalName;
 	}
 
-	/*
-	 * An accessor method that returns the total number of instances of this animal.
-	 * This should count both animal on loan to other collections and returned animals from other collections.
-	 */ 
 	public int getTotalAnimals() {
-		// to be completed
+
+		return totalAnimals;
 	}
 
-	/*
-	 * Returns the number of instances of the animal that are available
-	 * (i.e., not on loan to another collection).
-	 */
+	// Aforementioned method to return available animals.
 	public int getAvailableAnimals() {
-		// to be completed
+		return totalAnimals - loanedAnimals;
 	}
 
-	/*
-	 * Mark one of the instances of this animal as on loan to another collection.
-	 * If there are no available instances to loan to another collection, then this method should 
-	 * throw an IllegalStateException with an appropriate error message.
-	 */
+	// Checks if the number of available animals is greater than 1, or an exception is thrown as its impossible to return
+	// an animal if none are available.
 	public void loanAnimal() {
-		// to be completed
+
+		if (getAvailableAnimals() < 1) {
+			throw new IllegalStateException("No Animals Available to Loan.");
+		}
+
+		loanedAnimals++;
 	}
 
-	/*
-	 * Mark one of the instances of this animal as returned from another collection.
-	 * If none of the instances of this animal are on loan to other collections, this method
-	 * should throw an IllegalStateException with an appropriate error message.
-	 */
+
+	// Checks if the number of loaned animals is greater than 1, or an exception is thrown as its impossible to return
+	// an animal if none are on loan.
 	public void returnAnimal() {
-		// to be completed
+
+		if (this.loanedAnimals < 1) {
+			throw new IllegalStateException("No Animals are on Loan.");
+		}
+
+		loanedAnimals--;
 	}
 }
 
