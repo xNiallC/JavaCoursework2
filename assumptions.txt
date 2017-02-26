@@ -1,0 +1,3 @@
+——— Assumptions ———-
+
+- In Zoo.addAnimal(), it checks the number of available animals, not total animals, as contextually it makes more sense that you can only add to a zoo the animals you currently have available.
